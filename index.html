@@ -1,9 +1,13 @@
-
 <style>
 
   @font-face {
-      font-family: GTPT;
-       src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot"); src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
+    font-family: GTPT;
+    src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot"); 
+    src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot?#iefix") format("embedded-opentype"), 
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"),
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), 
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"),
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
   }
   
   body {
@@ -11,23 +15,58 @@
       font-family: GTPT;
       overflow: hidden;
   }
-  
+
   input {
-      border: none;
-      background-color: rgb(255, 238, 0);
-      font-family: GTPT;
+    border: none;
+    background-color: rgb(255, 238, 0);
+    font-family: GTPT;
   }
-    
-  .shlf {
-      min-height: 100%;
-      display: flex;
+
+  .donate-widget {
+    display: flex;
+    min-height: 100%;
+  }
+
+  .donate-widget__wrapper {
+    padding: 31.3vw 12vw 0 5.5vw;
+    background-color: rgb(255, 238, 0);
+/*     display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+    font-family: GTPT;
+  }
+
+
+
+  .donate-widget__offer {
+    margin: 0;
+    font-size: 4.7vw;
+    line-height: 1.26;
   }
   
-  .shlf-wrapper {
+  .donate-widget__sum-picker-holder {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-top: 2px solid #181818;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+/*   .donate-widget__sum-picker {
+    display: block;
+  } */
+  
+  
+  
+/*   .shlf-wrapper {
       background-color: rgb(255, 238, 0);
       width: 100%;
       height: 100%;
-      border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
       align-self: flex-end;
   }
   
@@ -54,10 +93,12 @@
       padding-bottom: 40px;
   }
   
-  .shlf-main-text {
-      font-size: 16px;
-      line-heigh: 1.4em;
-      margin: 20px 0;
+  .donut-widget__offer {
+      font-size: 4.7vw;
+      line-height: 1.26;
+      margin-top: 12.5rem;
+      margin-left: 1.05rem;
+      margin-right: 3rem;
   }
   
   .shlf-money-picker {
@@ -148,7 +189,7 @@
       justify-content: space-between;
       flex-direction: column;
       /*margin-top: 30%;*/
-  }
+/*   }
   
   .shlf-wrapper-top,
   .shlf-wrapper-center {
@@ -161,43 +202,51 @@
     
   .shlf {
       overflow: hidden;  
-  }
+  }  */
   </style>
   
-  <div class="shlf">
-              <div class="shlf-wrapper">
-                  <div class="shlf-wrapper-top">
-                      <div class="shlf-top-button-holder" style="display:none;">
-                          <div class="shlf-top-button" style="display:none">помочь фонду</div>
-                      </div>
-                      <div class="shlf-main-text">Вы можете оформить разовый платеж, выбрав сумму ниже, или подписаться на ежемесячные пожертвования – это позволит фонду стабильно планировать будущие проекты.</div>
-                  </div>
-                  <div class="shlf-wrapper-center">
-                      <div style="width: 100%;height: 1px;background: #181818;"></div>
-                      <div class="shlf-money-picker-holder">
-                          <div class="shlf-money-picker shlf-money-picker--active">200<span>₽</span></div>
-                          <div class="shlf-money-picker">500<span>₽</span></div>
-                          <div class="shlf-money-picker" style="margin-right: 20px">1000<span>₽</span></div>
-                      </div>
-                      <div class="shlf-money-picker-holder" style="padding-top: 0">
-                          <input class="shlf-money-picker" placeholder="Другая сумма">
-                      </div>
-                      <div style="width: 100%;height: 1px;background: #181818;"></div>
-                      <div class="shlf-paytype-picker-holder">
-                          <div class="shlf-paytype-picker shlf-paytype-picker--active">Ежемесячно</div>
-                          <div class="shlf-paytype-picker shlf-paytype-picker--r">Единовременно</div>
-                      </div>
-                      <div style="width: 100%;height: 1px;background: #181818;margin-bottom:-5px"></div>
-                      <div class="shlf-bottom-text">Вы всегда сможете <a href="https://my.cloudpayments.ru/ru/unsubscribe" target="_blank">отписаться</a> от ежемесячного пожертвования. Если у вас возникли трудности с платежом или остались вопросы, напишите нам на <a href="mailto:join@shalash.academy">join@shalash.academy</a></div
-                  </div>
-  
-                  <div class="shlf-wrapper-bottom">
-                      <div class="shlf-help-button animate__animated animate__bounce" onclick="pay()">помочь</div>
-                      <div style="width: 100%;height: 1px;background: #181818;margin-bottom:-5px;"></div>
-                      <div class="shlf-bottom-text">Я согласен с <a href="https://drive.google.com/file/d/19GUNupwkQxLKr-MnbKvBKpjw_FtDqOzC/view" target="_blank">условиями оферты</a>. Нажимая «Помочь», вы даёте <a href="https://drive.google.com/file/d/1YaTKQSP7AyXdqK93wcZNeijkLSDUMdvu/view" target="_blank">согласие на обработку персональных данных</a></div>
-                  </div>
-              </div>
-          </div>
+  <aside class="donate-widget">
+    <div class="donate-widget__wrapper">
+      <p class="donate-widget__offer">Вы можете оформить разовый платеж, выбрав сумму ниже, или подписаться на ежемесячные пожертвования – это позволит фонду стабильно планировать будущие проекты.</p>
+<!--   TODO    -->
+<!--   Заменить дивы на радиокнопки, отстилизовать, поменять jQuery     -->
+      <fieldset class="donate-widget__sum-picker-holder">
+        <div class="donate-widget__sum-picker donate-widget__sum-picker_active">200<span>₽</span></div>
+        <div class="donate-widget__sum-picker">500<span>₽</span></div>
+        <div class="donate-widget__sum-picker">1000<span>₽</span></div>
+      </fieldset>
+      <fieldset>
+        <input class="donate-widget__sum-picker" placeholder="Другая сумма">
+      </fieldset>
+      
+    </div>
+
+<!--         <div class="shlf-wrapper-center">
+            <div style="width: 100%;height: 1px;background: #181818;"></div>
+            <div class="shlf-money-picker-holder">
+                <div class="shlf-money-picker shlf-money-picker--active">200<span>₽</span></div>
+                <div class="shlf-money-picker">500<span>₽</span></div>
+                <div class="shlf-money-picker" style="margin-right: 20px">1000<span>₽</span></div>
+            </div>
+            <div class="shlf-money-picker-holder" style="padding-top: 0">
+                <input class="shlf-money-picker" placeholder="Другая сумма">
+            </div>
+            <div style="width: 100%;height: 1px;background: #181818;"></div>
+            <div class="shlf-paytype-picker-holder">
+                <div class="shlf-paytype-picker shlf-paytype-picker--active">Ежемесячно</div>
+                <div class="shlf-paytype-picker shlf-paytype-picker--r">Единовременно</div>
+            </div>
+            <div style="width: 100%;height: 1px;background: #181818;margin-bottom:-5px"></div>
+            <div class="shlf-bottom-text">Вы всегда сможете <a href="https://my.cloudpayments.ru/ru/unsubscribe" target="_blank">отписаться</a> от ежемесячного пожертвования. Если у вас возникли трудности с платежом или остались вопросы, напишите нам на <a href="mailto:join@shalash.academy">join@shalash.academy</a></div>
+        </div>
+
+        <div class="shlf-wrapper-bottom">
+            <div class="shlf-help-button animate__animated animate__bounce" onclick="pay()">помочь</div>
+            <div style="width: 100%;height: 1px;background: #181818;margin-bottom:-5px;"></div>
+            <div class="shlf-bottom-text">Я согласен с <a href="https://drive.google.com/file/d/19GUNupwkQxLKr-MnbKvBKpjw_FtDqOzC/view" target="_blank">условиями оферты</a>. Нажимая «Помочь», вы даёте <a href="https://drive.google.com/file/d/1YaTKQSP7AyXdqK93wcZNeijkLSDUMdvu/view" target="_blank">согласие на обработку персональных данных</a></div>
+        </div> -->
+
+  </aside>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
           <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
   <script>var data = {};
