@@ -4,35 +4,43 @@
     font-family: GTPT;
     src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot"); 
     src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot?#iefix") format("embedded-opentype"), 
-      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"),
-      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), 
-      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"),
-      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
+      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"),
+      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), 
+      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"),
+      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
   }
   
   body {
-      margin: 0;
-      font-family: GTPT;
-      overflow: hidden;
-  }
-
-  input {
-    border: none;
-    background-color: rgb(255, 238, 0);
+    margin: 0;
     font-family: GTPT;
+    overflow: hidden;
   }
 
   .donate-widget {
     display: flex;
     min-height: 100%;
   }
+  
+  .donate-widget__narrow {
+    padding-left: .5vw;
+  }
+  
+  .donate-widget__link {
+    color: #181818;
+    text-decoration: none;
+    border-bottom: 1px solid #181818;
+  }
+  
+  .donate-widget__link:hover {
+    border-bottom: none;
+  }
 
   .donate-widget__wrapper {
-    padding: 31.3vw 12vw 0 5.5vw;
+    padding: 31.3vw 12vw 5.1vw 5.2vw;
     background-color: rgb(255, 238, 0);
-/*     display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; */
+    justify-content: space-between;
     font-family: GTPT;
   }
 
@@ -44,182 +52,201 @@
     line-height: 1.26;
   }
   
-  .donate-widget__sum-picker-holder {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border: none;
-    border-top: 2px solid #181818;
-    display: flex;
-    justify-content: space-between;
+  .donate-widget__choose {
+    margin-top: -4vw;
   }
   
-/*   .donate-widget__sum-picker {
-    display: block;
+  .donate-widget__sum-picker-wrapper {
+    padding-top: 4.7vw;
+    padding-bottom: 3vw;
+    border-top: 2px solid #181818;
+    border-bottom: 2px solid #181818;
+  }
+  
+  .donate-widget__sum-picker-holder {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0 .5vw;
+  }
+  
+  .donate-widget__sum-picker {
+    font-size: 8vw;
+    line-height: 1.2;
+    letter-spacing: -.03em;
+    opacity: .3;
+  }
+  
+  .donate-widget__sum-picker_active {
+    opacity: 1;
+  }
+  
+  .donate-widget__input {
+    width: 100%;
+    padding: 0;
+    margin-top: 2.5vw;
+    border: none;
+    background-color: rgb(255, 238, 0);
+    font-family: GTPT;
+    letter-spacing: -.02em;
+  }
+  
+  .donate-widget__input::placeholder {
+    color: #000;
+  }
+  
+  .donate-widget__paytype-picker-holder {
+    display: flex;
+    justify-content: space-between;
+    padding: 5.4vw 4.5vw 6vw .5vw;
+    border-bottom: 2px solid #181818;
+    letter-spacing: -0.05em;
+  }
+  
+  .donate-widget__paytype-picker {
+    font-size: 5vw;
+    opacity: .3;
+  }
+  
+  .donate-widget__paytype-picker_active {
+    opacity: 1;
+  }
+  
+  .donate-widget__unsubscribe {
+    margin: 0;
+    padding-top: 2.2vw;
+    padding-bottom: 0;
+    color: #3d3d3d;
+    font-size: 2.6vw;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+  
+  .donate-widget__pay-btn {
+    font-size: 8vw;
+    line-height: 1.4;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    
+/*     animation-name: animation_6_1;
+    animation-duration: 11.601s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none; */
+  }
+  
+  .donate-widget__agree {
+    margin: 0;
+    padding-top: 4vw;
+    border-top: 2px solid #000;
+    color: #3d3d3d;
+    font-size: 2.5vw;
+    line-height: 1.5;
+    letter-spacing: .03em;
+  }
+  
+
+  
+/*   .donate-widget__radio-btn {
+    display: inline-block;
+  }
+  
+  .donate-widget__radio-btn input {
+    display: none;
+  }
+  
+  .donate-widget__radio-btn label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+    font-size: 8vw;
+    opacity: .3;
   } */
   
   
-  
-/*   .shlf-wrapper {
-      background-color: rgb(255, 238, 0);
-      width: 100%;
-      height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-      align-self: flex-end;
-  }
-  
-  .shlf-top-button {
-      background-color: #fff;
-      border: 1px solid #181818;
-      border-radius: 96px;
-      font-size: 18px;
-      text-align: center;
-      padding: 7px 20px;
-      font-weight: 500;
-      float: right;
-  }
-  
-  .shlf-top-button:hover {
-      cursor: pointer;
-      background-color: rgb(255, 238, 0);
-  }
-  
-  .shlf-top-button-holder {
-      width: 100%;
-      display: inline-block;
-      padding-top: 50px;
-      padding-bottom: 40px;
-  }
-  
-  .donut-widget__offer {
-      font-size: 4.7vw;
-      line-height: 1.26;
-      margin-top: 12.5rem;
-      margin-left: 1.05rem;
-      margin-right: 3rem;
-  }
-  
-  .shlf-money-picker {
-      opacity: .3;
-      font-size: 26px;
-      font-weight: 400;
-  }
-  
-  .shlf-money-picker:hover {
-      cursor: pointer;
-  }
-  
-  .shlf-money-picker--active {
-      opacity: 1;
-  }
-  
-  .shlf-paytype-picker {
-      opacity: .3;
-      font-size: 16px;
-  }
-  
-  .shlf-paytype-picker:hover {
-      cursor: pointer;
-  }
-  
-  .shlf-paytype-picker--active {
-      opacity: 1;
-  }
-  
-  .shlf-help-button {
-      font-size: 26px;
-      text-transform: uppercase;
-  }
-  
-  .shlf-help-button:hover {
-      cursor: pointer;
-  }
-  
-  hr {
-      color: #181818;
-      background: #181818;
-  }
-  
-  .shlf-wrapper-bottom{
-      padding: 0;
-  }
-  
-  .shlf-hr {
-      width: 100%;
-      height: 1px;
-      background: #181818;
-  }
-  
-  .shlf-paytype-picker-holder {
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 0;
-  }
-  
-  .shlf-money-picker-holder {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-  }
-  
-  .shlf-bottom-text {
-      color: #181818;
-      font-size: 9px;
-      padding-top: 10px;
-  }
-  
-  a {
-      text-decoration: underline;
-      color: #181818
-  }
-  
-  a:hover {
-      text-decoration: none;
-  }
-  
-  .shlf-bottom-text {
-      margin-bottom: 15px;
-      font-size: 9px;
-  }
-  
-  .shlf-wrapper {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      /*margin-top: 30%;*/
-/*   }
-  
-  .shlf-wrapper-top,
-  .shlf-wrapper-center {
-      padding: 0 20px;
-  }
-  
-  .shlf-paytype-picker--r {
-      margin-right: 20px;
-  }
-    
-  .shlf {
-      overflow: hidden;  
-  }  */
+
   </style>
   
   <aside class="donate-widget">
-    <div class="donate-widget__wrapper">
-      <p class="donate-widget__offer">Вы можете оформить разовый платеж, выбрав сумму ниже, или подписаться на ежемесячные пожертвования – это позволит фонду стабильно планировать будущие проекты.</p>
+    <form class="donate-widget__wrapper">
+      <p class="donate-widget__offer donate-widget__narrow">
+        Вы можете оформить разовый платеж, выбрав сумму ниже, или подписаться на ежемесячные 
+        пожертвования – это позволит фонду стабильно планировать будущие проекты.
+      </p>
+      <div class="donate-widget__choose">
 <!--   TODO    -->
 <!--   Заменить дивы на радиокнопки, отстилизовать, поменять jQuery     -->
-      <fieldset class="donate-widget__sum-picker-holder">
-        <div class="donate-widget__sum-picker donate-widget__sum-picker_active">200<span>₽</span></div>
-        <div class="donate-widget__sum-picker">500<span>₽</span></div>
-        <div class="donate-widget__sum-picker">1000<span>₽</span></div>
-      </fieldset>
-      <fieldset>
-        <input class="donate-widget__sum-picker" placeholder="Другая сумма">
-      </fieldset>
+        <div class="donate-widget__sum-picker-wrapper">
+          <div class="donate-widget__sum-picker-holder">
+    <!--         <div class="donate-widget__radio-btn">
+              <input class="donate-widget__sum-picker" type="radio" name="sum" id="sum1" value="500">
+              <label for="sum1">500₽</label>
+            </div>
+            <div class="donate-widget__radio-btn">
+              <input class="donate-widget__sum-picker" type="radio" name="sum" id="sum2" value="1500">
+              <label for="sum2">1500₽</label>
+            </div>
+            <div class="donate-widget__radio-btn">
+              <input class="donate-widget__sum-picker" type="radio" name="sum" id="sum3" value="2500">
+              <label for="sum3">2500₽</label>
+            </div> -->
+            
+            <div class="donate-widget__sum-picker donate-widget__sum-picker_active">
+              500 ₽
+            </div>
+            <div class="donate-widget__sum-picker">
+              1500 ₽
+            </div>
+            <div class="donate-widget__sum-picker">
+              2500 ₽
+            </div>
+          </div>
+          <input class="donate-widget__sum-picker donate-widget__input donate-widget__narrow" placeholder="Другая сумма">
+        </div>
+        <div class="donate-widget__paytype-picker-holder">
+          <div class="donate-widget__paytype-picker donate-widget__paytype-picker_active">
+            Ежемесячно
+          </div>
+          <div class="donate-widget__paytype-picker donate-widget__paytype-picker--r">
+            Единовременно
+          </div>
+        </div>
+        <p class="donate-widget__unsubscribe donate-widget__narrow">
+          Вы всегда сможете 
+          <a class="donate-widget__link" 
+             href="https://my.cloudpayments.ru/ru/unsubscribe" 
+             target="_blank">
+            отписаться
+          </a>
+          от ежемесячного пожертвования. 
+          Если у вас возникли трудности с платежом или остались вопросы, напишите нам на 
+          <a class="donate-widget__link" 
+             href="mailto:join@shalash.academy">
+            join@shalash.academy
+          </a>
+        </p>
+      </div>
+    
+      <div class="donate-widget__pay donate-widget__narrow">
+        <div class="donate-widget__pay-btn" onclick="pay()">помочь</div>
+        <p class="donate-widget__agree">
+          Я согласен с 
+          <a class="donate-widget__link" 
+             href="https://drive.google.com/file/d/19GUNupwkQxLKr-MnbKvBKpjw_FtDqOzC/view" 
+             target="_blank">
+            условиями оферты
+          </a>. 
+          Нажимая «Помочь», вы даёте 
+          <a class="donate-widget__link" 
+             href="https://drive.google.com/file/d/1YaTKQSP7AyXdqK93wcZNeijkLSDUMdvu/view" 
+             target="_blank">
+            согласие на обработку персональных данных
+          </a>
+        </p>
+      </div>
       
-    </div>
+    </form>
 
 <!--         <div class="shlf-wrapper-center">
             <div style="width: 100%;height: 1px;background: #181818;"></div>
@@ -254,14 +281,14 @@
   
   var amount;
   
-  $('.shlf-money-picker').click(function(){
-      $('.shlf-money-picker').removeClass('shlf-money-picker--active');
-      $(this).addClass('shlf-money-picker--active');
+  $('.donate-widget__sum-picker').click(function(){
+      $('.donate-widget__sum-picker').removeClass('donate-widget__sum-picker__active');
+      $(this).addClass('donate-widget__sum-picker__active');
   })
   
-  $('.shlf-paytype-picker').click(function(){
-      $('.shlf-paytype-picker').removeClass('shlf-paytype-picker--active');
-      $(this).addClass('shlf-paytype-picker--active');
+  $('.donate-widget__paytype-picker').click(function(){
+      $('.donate-widget__paytype-picker').removeClass('donate-widget__paytype-picker__active');
+      $(this).addClass('donate-widget__paytype-picker__active');
   
       if ( $(this).text() === "Ежемесячно" ) {
           data.cloudPayments = {recurrent: { interval: 'Month', period: 1}};
@@ -272,11 +299,11 @@
   
   this.pay = function () {
   
-      if ( $('.shlf-money-picker--active').attr("placeholder") ) {
-          amount = parseInt($('.shlf-money-picker--active').val())
+      if ( $('.donate-widget__sum-picker__active').attr("placeholder") ) {
+          amount = parseInt($('.donate-widget__sum-picker__active').val())
           console.log(amount)
       } else {
-          amount = parseInt($('.shlf-money-picker--active').text())
+          amount = parseInt($('.donate-widget__sum-picker__active').text())
       }
   
       var widget = new cp.CloudPayments();
