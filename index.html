@@ -248,8 +248,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <script>
-  var data = {};
-  data.cloudPayments = {recurrent: { interval: 'Month', period: 1}};
+  var monthly = true;
 
   var amount;
 
@@ -263,10 +262,10 @@
       $(this).addClass('donate-widget__paytype-picker_active');
 
       if ( $(this).text() === "Ежемесячно" ) {
-          data.cloudPayments = {recurrent: { interval: 'Month', period: 1}};
+        monthly = true;
         console.log('ежемесячно');
       } else {
-          data.cloudPayments = {};
+        monthly = false;
       }
   });
 
@@ -277,8 +276,19 @@
     } else {
         amount = parseInt($('.donate-widget__sum-picker_active').text());
     }
-
+    
+    var data = {};
+  	data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
+    
     var widget = new cp.CloudPayments();
+    
+    if ( monthly ) {
+      data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
+      console.log('ежемесячно');
+    } else {
+        data.cloudPayments = {};
+    }
+    
     widget.charge({ // options
         publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
         description: '', //назначение
