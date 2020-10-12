@@ -105,6 +105,10 @@
     opacity: .3;
   }
   
+  .donate-widget__sum-picker:hover {
+    cursor: pointer;
+  }
+  
   .donate-widget__sum-picker_active {
     opacity: 1;
   }
@@ -145,6 +149,10 @@
     opacity: .3;
   }
   
+  .donate-widget__paytype-picker:hover {
+    cursor: pointer;
+  }
+  
   .donate-widget__paytype-picker_active {
     opacity: 1;
   }
@@ -164,6 +172,10 @@
     line-height: 1.4;
     letter-spacing: -.03em;
     text-transform: uppercase;
+  }
+  
+  .donate-widget__pay-btn:hover {
+    cursor: pointer;
   }
   
   .donate-widget__agree {
@@ -245,63 +257,70 @@
 </aside>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
+
+<script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <script>
-  var monthly = true;
+  let monthly = true;
 
-  var amount;
+  let amount = 0;
 
-  $('.donate-widget__sum-picker').click(function(){
-      $('.donate-widget__sum-picker').removeClass('donate-widget__sum-picker_active');
-      $(this).addClass('donate-widget__sum-picker_active');
+  const handleSumPickerClick = function() {
+    Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem){
+      elem.classList.remove('donate-widget__sum-picker_active');
+    })
+    this.classList.add('donate-widget__sum-picker_active');
+  }
+
+  const handlePaytypePickerClick = function() {
+    Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem){
+      elem.classList.remove('donate-widget__paytype-picker_active');
+    })
+    this.classList.add('donate-widget__paytype-picker_active');
+
+    if ( this.classList.contains('periodical') ) {
+      monthly = true;
+    } else {
+      monthly = false;
+    }
+  }
+
+
+  Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem) {
+    elem.addEventListener('click', handleSumPickerClick);
+  });
+  Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem) {
+    elem.addEventListener('click', handlePaytypePickerClick);
   });
 
-  $('.donate-widget__paytype-picker').click(function(){
-      $('.donate-widget__paytype-picker').removeClass('donate-widget__paytype-picker_active');
-      $(this).addClass('donate-widget__paytype-picker_active');
-
-      if ( $(this).text() === "Ежемесячно" ) {
-        monthly = true;
-        console.log('ежемесячно');
-      } else {
-        monthly = false;
-      }
-  });
 
   this.pay = function () {
-    if ( $('.donate-widget__sum-picker_active').attr("placeholder") ) {
-        amount = parseInt($('.donate-widget__sum-picker_active').val());
-        console.log(amount);
+    if ( document.querySelector('.donate-widget__sum-picker_active').getAttribute('placeholder') ) {
+        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').value);
     } else {
-        amount = parseInt($('.donate-widget__sum-picker_active').text());
+        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').textContent);
     }
+
     
-    var data = {};
-  	data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-    
-    var widget = new cp.CloudPayments();
-    
-    if ( monthly ) {
-      data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-      console.log('ежемесячно');
-    } else {
-        data.cloudPayments = {};
-    }
-    
+    // ATTENTION: Для подключения подписки необходим accountId
+    // const data = {};
+    // data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
+
+    // if ( monthly ) {
+    //   data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
+    // } else {
+    //   data.cloudPayments = {};
+    // }
+
+    const widget = new cp.CloudPayments();
+
     widget.charge({ // options
-        publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
-        description: '', //назначение
-        amount: amount, //сумма
-        currency: 'RUB', //валюта
-        invoiceId: '1234567', //номер заказа  (необязательно)
-        accountId: '', //идентификатор плательщика (необязательно)
-        skin: "mini", //дизайн виджета
-        data: data
-      }, function (options) { // success
-              //действие при успешной оплате
-      }, function (reason, options) { // fail
-              //действие при неуспешной оплате
+      publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
+      amount: amount, //сумма
+      currency: 'RUB', //валюта
+      skin: "mini" //дизайн виджета
+
+      // data: data
+
     });
   };
 </script>
