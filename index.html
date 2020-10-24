@@ -15,14 +15,14 @@
       transform: translateY(0) rotate(0);
     }
     97% {
-        transform: translateY(-9px) rotate(5deg);
+        transform: translateY(-20px) rotate(6deg);
     }
 
     98% {
         transform: translateY(0) rotate(0);
     }
     99% {
-        transform: translateY(-6px) rotate(-2deg);
+        transform: translateY(-10px) rotate(-4deg);
     }
 
     100% {
@@ -168,6 +168,9 @@
   }
   
   .donate-widget__pay-btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
     font-size: 8vw;
     line-height: 1.4;
     letter-spacing: -.03em;
@@ -237,7 +240,7 @@
       </p>
     </div>
     <div class="donate-widget__pay donate-widget__narrow">
-      <div class="donate-widget__pay-btn bounce" onclick="pay()">помочь</div>
+      <button class="donate-widget__pay-btn bounce" onclick="pay()">помочь</button>
       <p class="donate-widget__agree">
         Я согласен с 
         <a class="donate-widget__link" 

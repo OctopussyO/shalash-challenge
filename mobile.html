@@ -15,14 +15,14 @@
       transform: translateY(0) rotate(0);
     }
     97% {
-        transform: translateY(-9px) rotate(5deg);
+        transform: translateY(-20px) rotate(6deg);
     }
 
     98% {
         transform: translateY(0) rotate(0);
     }
     99% {
-        transform: translateY(-6px) rotate(-2deg);
+        transform: translateY(-10px) rotate(-4deg);
     }
 
     100% {
@@ -137,7 +137,7 @@
     display: flex;
     justify-content: space-between;
     padding: 6vw 5vw 6.5vw .5vw;
-    border-bottom: 2px solid #181818;
+    border-bottom: 1px solid #181818;
   }
   
   .donate-widget__paytype-picker {
@@ -160,330 +160,19 @@
   }
   
   .donate-widget__pay-btn {
-    padding-bottom: 2.5vw;
-    font-size: 8vw;
-    line-height: 1.2;
-/*     letter-spacing: -.01em; */
-    text-transform: uppercase;
-  }
-  
-  .donate-widget__agree {
-    margin: 0;
-    padding-top: 4vw;
-    border-top: 2px solid #000;
-    color: #3d3d3d;
-    font-size: 2.5vw;
-    line-height: 1.5;
-    letter-spacing: .06em;
-  }  
-
-</style>
-
-<aside class="donate-widget">
-  <form class="donate-widget__wrapper">
-    <p class="donate-widget__offer donate-widget__narrow">
-      Вы можете оформить разовый платеж, выбрав сумму ниже, или подписаться на ежемесячные 
-      пожертвования – это позволит фонду стабильно планировать будущие проекты.
-    </p>
-    <div class="donate-widget__choose">
-      <div class="donate-widget__sum-picker-wrapper">
-        <div class="donate-widget__sum-picker-holder">
-          <div class="donate-widget__sum-picker donate-widget__sum-picker_active">
-            500 ₽
-          </div>
-          <div class="donate-widget__sum-picker">
-            1500 ₽
-          </div>
-          <div class="donate-widget__sum-picker">
-            2500 ₽
-          </div>
-        </div>
-        <input class="donate-widget__sum-picker donate-widget__input donate-widget__narrow" 
-               placeholder="Другая сумма" 
-               type="number">
-      </div>
-      <div class="donate-widget__paytype-picker-holder">
-        <div class="donate-widget__paytype-picker donate-widget__paytype-picker_active">
-          Ежемесячно
-        </div>
-        <div class="donate-widget__paytype-picker">
-          Единовременно
-        </div>
-      </div>
-      <p class="donate-widget__unsubscribe">
-        Вы всегда сможете 
-        <a class="donate-widget__link" 
-           href="https://my.cloudpayments.ru/ru/unsubscribe" 
-           target="_blank">
-          отписаться
-        </a>
-        от ежемесячного пожертвования. 
-        Если у вас возникли трудности с платежом или остались вопросы, напишите нам на 
-        <a class="donate-widget__link" 
-           href="mailto:join@shalash.academy">
-          join@shalash.academy
-        </a>
-      </p>
-    </div>
-    <div class="donate-widget__pay donate-widget__narrow">
-      <div class="donate-widget__pay-btn donate-widget__narrow bounce" onclick="pay()">помочь</div>
-      <p class="donate-widget__agree">
-        Я согласен с 
-        <a class="donate-widget__link" 
-           href="https://drive.google.com/file/d/19GUNupwkQxLKr-MnbKvBKpjw_FtDqOzC/view" 
-           target="_blank">
-          условиями оферты
-        </a>. 
-        Нажимая «Помочь», вы даёте 
-        <a class="donate-widget__link" 
-           href="https://drive.google.com/file/d/1YaTKQSP7AyXdqK93wcZNeijkLSDUMdvu/view" 
-           target="_blank">
-          согласие на обработку персональных данных
-        </a>
-      </p>
-    </div>
-  </form>
-</aside>
-
-
-<script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
-<script>
-  let monthly = true;
-
-  let amount = 0;
-
-  const handleSumPickerClick = function() {
-    Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem){
-      elem.classList.remove('donate-widget__sum-picker_active');
-    })
-    this.classList.add('donate-widget__sum-picker_active');
-  }
-
-  const handlePaytypePickerClick = function() {
-    Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem){
-      elem.classList.remove('donate-widget__paytype-picker_active');
-    })
-    this.classList.add('donate-widget__paytype-picker_active');
-
-    if ( this.classList.contains('periodical') ) {
-      monthly = true;
-    } else {
-      monthly = false;
-    }
-  }
-
-
-  Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem) {
-    elem.addEventListener('click', handleSumPickerClick);
-  });
-  Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem) {
-    elem.addEventListener('click', handlePaytypePickerClick);
-  });
-
-
-  this.pay = function () {
-    if ( document.querySelector('.donate-widget__sum-picker_active').getAttribute('placeholder') ) {
-        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').value);
-    } else {
-        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').textContent);
-    }
-
-    
-    // ATTENTION: Для подключения подписки необходим accountId
-    // const data = {};
-    // data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-
-    // if ( monthly ) {
-    //   data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-    // } else {
-    //   data.cloudPayments = {};
-    // }
-
-    const widget = new cp.CloudPayments();
-
-    widget.charge({ // options
-      publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
-      amount: amount, //сумма
-      currency: 'RUB', //валюта
-      skin: "mini" //дизайн виджета
-
-      // data: data
-
-    });
-  };
-</script><style>
-
-  @font-face {
-    font-family: GTPT;
-    src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot"); 
-    src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot?#iefix") format("embedded-opentype"), 
-      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"),
-      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), 
-      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"),
-      	url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
-  }
-
-  @keyframes bounce {
-    96% {
-      transform: translateY(0) rotate(0);
-    }
-    97% {
-        transform: translateY(-9px) rotate(5deg);
-    }
-
-    98% {
-        transform: translateY(0) rotate(0);
-    }
-    99% {
-        transform: translateY(-6px) rotate(-2deg);
-    }
-
-    100% {
-        transform: translateY(0) rotate(0);
-    }
-  }
-  
-  body {
-    margin: 0;
-    font-family: GTPT;
-    overflow: hidden;
-  }
-
-  .bounce {
-    animation-name: bounce;
-    animation-duration: 11.6s;
-    animation-delay: 0;
-    animation-iteration-count: infinite;
-    animation-direction: normal;
-    animation-fill-mode: none;
-  }
-  
-  .donate-widget {
-    display: flex;
-    min-height: 100%;
-  }
-  
-  .donate-widget__narrow {
-    padding-left: .5vw;
-  }
-  
-  .donate-widget__link {
-    color: #181818;
-    text-decoration: none;
-    border-bottom: 1px solid #181818;
-  }
-  
-  .donate-widget__link:hover {
-    border-bottom: none;
-  }
-
-  .donate-widget__wrapper {
-    padding: 14.5vw 7vw 14vw 5.2vw;
-    background-color: rgb(255, 238, 0);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    font-family: GTPT;
-  }
-
-  .donate-widget__offer {
-    margin: 0;
-    font-size: 4.7vw;
-    line-height: 1.35;
-    letter-spacing: .03em;
-    padding-bottom: 4vw;
-  }
-  
-  .donate-widget__choose {
-    flex-grow: .55;
-  }
-  
-  .donate-widget__sum-picker-wrapper {
-    padding-top: 5.5vw;
-    padding-bottom: 3.5vw;
-    border-top: 1px solid #181818;
-    border-bottom: 1px solid #181818;
-  }
-  
-  .donate-widget__sum-picker-holder {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding-right: 1.8vw;
-  }
-  
-  .donate-widget__sum-picker {
-    font-size: 8.5vw;
-    line-height: 1.2;
-    letter-spacing: -.02em;
-    opacity: .3;
-  }
-  
-  .donate-widget__sum-picker_active {
-    opacity: 1;
-  }
-  
-  .donate-widget__input {
-    width: 100%;
-    padding: 0;    
-    box-sizing: border-box;
-    margin-top: 2.5vw;
     border: none;
-    background-color: rgb(255, 238, 0);
-    font-family: GTPT;
-    letter-spacing: -.02em;
-  }
-  
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-  }
-  input[type='number'] {
-      -moz-appearance: textfield;
-  }
-  
-  .donate-widget__input::placeholder {
-    color: #000;
-  }
-  
-  .donate-widget__paytype-picker-holder {
-    display: flex;
-    justify-content: space-between;
-    padding: 6vw 5vw 6.5vw .5vw;
-    border-bottom: 2px solid #181818;
-  }
-  
-  .donate-widget__paytype-picker {
-    font-size: 5vw;
-    opacity: .3;
-  }
-  
-  .donate-widget__paytype-picker_active {
-    opacity: 1;
-  }
-  
-  .donate-widget__unsubscribe {
-    margin: 0;
-    padding-top: 3vw;
-    padding-bottom: 0;
-    color: #3d3d3d;
-    font-size: 2.6vw;
-    line-height: 1.5;
-    letter-spacing: .04em;
-  }
-  
-  .donate-widget__pay-btn {
+    outline: none;
+    background-color: transparent;
     padding-bottom: 2.5vw;
     font-size: 8vw;
     line-height: 1.2;
-/*     letter-spacing: -.01em; */
     text-transform: uppercase;
   }
   
   .donate-widget__agree {
     margin: 0;
     padding-top: 4vw;
-    border-top: 2px solid #000;
+    border-top: 1px solid #000;
     color: #3d3d3d;
     font-size: 2.5vw;
     line-height: 1.5;
@@ -539,7 +228,7 @@
       </p>
     </div>
     <div class="donate-widget__pay donate-widget__narrow">
-      <div class="donate-widget__pay-btn donate-widget__narrow bounce" onclick="pay()">помочь</div>
+      <button class="donate-widget__pay-btn donate-widget__narrow bounce" onclick="pay()">помочь</button>
       <p class="donate-widget__agree">
         Я согласен с 
         <a class="donate-widget__link" 
