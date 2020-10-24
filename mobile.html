@@ -85,6 +85,13 @@
     flex-grow: .55;
   }
   
+  .donate-widget__email {
+    margin-bottom: 1vh;
+    font-size: 8vw;
+    line-height: 1.2;
+    opacity: .3;
+  }
+  
   .donate-widget__sum-picker-wrapper {
     padding-top: 5.5vw;
     padding-bottom: 3.5vw;
@@ -163,7 +170,8 @@
     border: none;
     outline: none;
     background-color: transparent;
-    padding-bottom: 2.5vw;
+    padding-bottom: 0 0 2.5vw;
+    font-family: GTPT;
     font-size: 8vw;
     line-height: 1.2;
     text-transform: uppercase;
@@ -188,6 +196,9 @@
       пожертвования – это позволит фонду стабильно планировать будущие проекты.
     </p>
     <div class="donate-widget__choose">
+      <input class="donate-widget__email donate-widget__input donate-widget__narrow"
+             placeholder="Email"
+             type="email">
       <div class="donate-widget__sum-picker-wrapper">
         <div class="donate-widget__sum-picker-holder">
           <div class="donate-widget__sum-picker donate-widget__sum-picker_active">
@@ -228,7 +239,7 @@
       </p>
     </div>
     <div class="donate-widget__pay donate-widget__narrow">
-      <button class="donate-widget__pay-btn donate-widget__narrow bounce" onclick="pay()">помочь</button>
+      <button class="donate-widget__pay-btn donate-widget__narrow bounce">помочь</button>
       <p class="donate-widget__agree">
         Я согласен с 
         <a class="donate-widget__link" 

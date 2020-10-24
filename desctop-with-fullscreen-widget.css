@@ -1,0 +1,196 @@
+@font-face {
+  font-family: GTPT;
+  src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot"); 
+  src: url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.eot?#iefix") format("embedded-opentype"), 
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff2") format("woff2"),
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.woff") format("woff"), 
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.ttf") format("truetype"),
+      url("//db.onlinewebfonts.com/t/c31b8e03018828378e7e35add49c2244.svg#GT Eesti Pro Text") format("svg");
+}
+
+@keyframes bounce {
+  96% {
+    transform: translateY(0) rotate(0);
+  }
+  97% {
+      transform: translateY(-20px) rotate(6deg);
+  }
+
+  98% {
+      transform: translateY(0) rotate(0);
+  }
+  99% {
+      transform: translateY(-10px) rotate(-4deg);
+  }
+
+  100% {
+      transform: translateY(0) rotate(0);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: GTPT;
+  overflow: hidden;
+}
+
+.bounce {
+  animation-name: bounce;
+  animation-duration: 11.6s;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+}
+
+.donate-widget {
+  display: flex;
+  height: 100%;
+  width: 340px;
+  box-sizing: border-box;
+}
+
+.donate-widget__narrow {
+  padding-left: .17vw;
+}
+
+.donate-widget__link {
+  color: #181818;
+  text-decoration: none;
+  border-bottom: 1px solid #181818;
+}
+
+.donate-widget__link:hover {
+  border-bottom: none;
+}
+
+.donate-widget__wrapper {
+  width: 100%;
+  padding: 1vw 2.9vw .9vw 1.4vw;
+  background-color: rgb(255, 238, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: GTPT;
+}
+
+.donate-widget__offer {
+  margin: 0;
+  font-size: 1.24vw;
+  line-height: 1.3;
+/*     padding-bottom: 4vw; */
+}
+
+.donate-widget__crutch {
+  width:100%;
+  height: 4vw;
+  flex-shrink: 3;
+}
+
+.donate-widget__choose {
+  flex-grow: .3;
+}
+
+.donate-widget__sum-picker-wrapper {
+  padding-top: 1.2vw;
+  padding-bottom: .9vw;
+  border-top: 1.5px solid #181818;
+  border-bottom: 1.5px solid #181818;
+}
+
+.donate-widget__sum-picker-holder {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0 .5vw 0 .2vw;
+}
+
+.donate-widget__sum-picker {
+  font-size: 2vw;
+  line-height: 1.2;
+  opacity: .3;
+}
+
+.donate-widget__sum-picker:hover {
+  cursor: pointer;
+}
+
+.donate-widget__sum-picker_active {
+  opacity: 1;
+}
+
+.donate-widget__input {
+  width: 100%;
+  padding: 0 .2vw;    
+  box-sizing: border-box;
+  margin-top: .8vw;
+  border: none;
+  background-color: rgb(255, 238, 0);
+  font-family: GTPT;
+  letter-spacing: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.donate-widget__input::placeholder {
+  color: #000;
+}
+
+.donate-widget__paytype-picker-holder {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5vw 1.3vw 1.7vw .2vw;
+  border-bottom: 2px solid #181818;
+}
+
+.donate-widget__paytype-picker {
+  font-size: 1.25vw;
+  opacity: .3;
+}
+
+.donate-widget__paytype-picker:hover {
+  cursor: pointer;
+}
+
+.donate-widget__paytype-picker_active {
+  opacity: 1;
+}
+
+.donate-widget__unsubscribe {
+  margin: 0;
+  padding-top: .5vw;
+  padding-bottom: 0;
+  color: #3d3d3d;
+  font-size: .7vw;
+  line-height: 1.4;
+}
+
+.donate-widget__pay-btn {
+  border: none;
+  outline: none;
+  padding: 0;
+  background-color: transparent;
+  font-size: 2vw;
+  line-height: 1.4;
+  text-transform: uppercase;
+  font-family: GTPT;
+}
+
+.donate-widget__pay-btn:hover {
+  cursor: pointer;
+}
+
+.donate-widget__agree {
+  margin: 0;
+  padding-top: 1vw;
+  border-top: 1.5px solid #000;
+  color: #3d3d3d;
+  font-size: .7vw;
+  line-height: 1.4;
+}  
