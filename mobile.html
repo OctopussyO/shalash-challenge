@@ -216,7 +216,7 @@
                type="number">
       </div>
       <div class="donate-widget__paytype-picker-holder">
-        <div class="donate-widget__paytype-picker donate-widget__paytype-picker_active">
+        <div class="donate-widget__paytype-picker periodical donate-widget__paytype-picker_active">
           Ежемесячно
         </div>
         <div class="donate-widget__paytype-picker">
@@ -263,13 +263,12 @@
 <script>
   let monthly = true;
 
-  let amount = 0;
-
   const handleSumPickerClick = function() {
     Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem){
       elem.classList.remove('donate-widget__sum-picker_active');
     })
     this.classList.add('donate-widget__sum-picker_active');
+    console.log(this)
   }
 
   const handlePaytypePickerClick = function() {
@@ -284,8 +283,34 @@
       monthly = false;
     }
   }
+  
+  const pay = function () {
+    const email = document.querySelector('.donate-widget__email').value;
+    const activeSumPickerElement = document.querySelector('.donate-widget__sum-picker_active');
+    
+    const amount = activeSumPickerElement.getAttribute('placeholder') 
+      ? parseInt(activeSumPickerElement.value)
+      : parseInt(activeSumPickerElement.textContent);
+    
+    const data = {};
 
+    data.cloudPayments = monthly
+    ? { recurrent: { interval: 'Month', period: 1 } }
+    : {};
+    
+    const widget = new cp.CloudPayments();
 
+    widget.charge({ // options
+      publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
+      description: 'Пожертвование в фонд "Шалаш"',
+      amount: amount, //сумма
+      currency: 'RUB', //валюта
+      skin: "mini", //дизайн виджета
+      accountId: email,
+      data: data,  
+    });
+  };
+  
   Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem) {
     elem.addEventListener('click', handleSumPickerClick);
   });
@@ -293,35 +318,10 @@
     elem.addEventListener('click', handlePaytypePickerClick);
   });
 
+  document.querySelector('.donate-widget__wrapper').addEventListener('submit', (e) => {
+    e.preventDefault();
+    pay();
+    e.target.reset();
 
-  this.pay = function () {
-    if ( document.querySelector('.donate-widget__sum-picker_active').getAttribute('placeholder') ) {
-        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').value);
-    } else {
-        amount = parseInt(document.querySelector('.donate-widget__sum-picker_active').textContent);
-    }
-
-    
-    // ATTENTION: Для подключения подписки необходим accountId
-    // const data = {};
-    // data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-
-    // if ( monthly ) {
-    //   data.cloudPayments = {recurrent: { interval: 'Month', period: 1 }};
-    // } else {
-    //   data.cloudPayments = {};
-    // }
-
-    const widget = new cp.CloudPayments();
-
-    widget.charge({ // options
-      publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
-      amount: amount, //сумма
-      currency: 'RUB', //валюта
-      skin: "mini" //дизайн виджета
-
-      // data: data
-
-    });
-  };
+  });
 </script>
