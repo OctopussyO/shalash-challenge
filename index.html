@@ -85,7 +85,6 @@
     font-size: 8vw;
     line-height: 1.2;
     letter-spacing: -.03em;
-    opacity: .3;
   }
   
   .donate-widget__sum-picker-wrapper {
@@ -106,6 +105,9 @@
     font-size: 8vw;
     line-height: 1.2;
     letter-spacing: -.03em;
+  }
+  
+  .donate-widget__default-sum {
     opacity: .3;
   }
   
@@ -138,6 +140,7 @@
   
   .donate-widget__input::placeholder {
     color: #000;
+    opacity: .3;
   }
   
   .donate-widget__paytype-picker-holder {
@@ -196,7 +199,6 @@
     line-height: 1.5;
     letter-spacing: .03em;
   }  
-
 </style>
 
 <aside class="donate-widget" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">
@@ -208,16 +210,17 @@
     <div class="donate-widget__choose">
       <input class="donate-widget__email donate-widget__input donate-widget__narrow" 
                placeholder="Email" 
-               type="email">
+               type="email"
+               required>
       <div class="donate-widget__sum-picker-wrapper">
         <div class="donate-widget__sum-picker-holder">
-          <div class="donate-widget__sum-picker donate-widget__sum-picker_active">
+          <div class="donate-widget__sum-picker donate-widget__default-sum donate-widget__sum-picker_active">
             500 ₽
           </div>
-          <div class="donate-widget__sum-picker">
+          <div class="donate-widget__sum-picker donate-widget__default-sum">
             1500 ₽
           </div>
-          <div class="donate-widget__sum-picker">
+          <div class="donate-widget__sum-picker donate-widget__default-sum">
             2500 ₽
           </div>
         </div>
@@ -273,42 +276,76 @@
 <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
 <script>
   let monthly = true;
+  const sumInputElement = document.querySelector('.donate-widget__sum-picker.donate-widget__input');
+  const emailInputElement = document.querySelector('.donate-widget__email');
+  const sumPickers = Array.from(document.querySelectorAll('.donate-widget__sum-picker'));
+  const paytypePickers = Array.from(document.querySelectorAll('.donate-widget__paytype-picker'));
 
   const handleSumPickerClick = function() {
-    Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem){
+    sumPickers.forEach(function(elem){
       elem.classList.remove('donate-widget__sum-picker_active');
     })
     this.classList.add('donate-widget__sum-picker_active');
-    console.log(this)
+
+    if (this.getAttribute('placeholder')) {
+      sumInputElement.required = true;
+    } else {
+      sumInputElement.required = false;
+      sumInputElement.value = '';
+    }
   }
 
   const handlePaytypePickerClick = function() {
-    Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem){
+    paytypePickers.forEach(function(elem){
       elem.classList.remove('donate-widget__paytype-picker_active');
     })
     this.classList.add('donate-widget__paytype-picker_active');
 
     if ( this.classList.contains('periodical') ) {
-      monthly = true;
-    } else {
-      monthly = false;
-    }
+    monthly = true;
+    emailInputElement.required = true;
+  } else {
+    monthly = false;
+    emailInputElement.required = false;
   }
-  
+  }
+
+  const customFormReset = () => {
+    sumPickers.forEach((elem, i) => {
+      if (i === 0) {
+        elem.classList.add('donate-widget__sum-picker_active');
+      } else {
+        elem.classList.remove('donate-widget__sum-picker_active');
+      }
+    })
+
+    sumInputElement.required = false;
+
+    paytypePickers.forEach((elem, i) => {
+      if (i === 0) {
+        elem.classList.add('donate-widget__paytype-picker_active');
+      } else {
+        elem.classList.remove('donate-widget__paytype-picker_active');
+      }
+    });
+
+    monthly = true;
+  }
+
   const pay = function () {
-    const email = document.querySelector('.donate-widget__email').value;
+    const email = emailInputElement.value;
     const activeSumPickerElement = document.querySelector('.donate-widget__sum-picker_active');
-    
+
     const amount = activeSumPickerElement.getAttribute('placeholder') 
       ? parseInt(activeSumPickerElement.value)
       : parseInt(activeSumPickerElement.textContent);
-    
+
     const data = {};
 
     data.cloudPayments = monthly
     ? { recurrent: { interval: 'Month', period: 1 } }
     : {};
-    
+
     const widget = new cp.CloudPayments();
 
     widget.charge({ // options
@@ -321,18 +358,20 @@
       data: data,  
     });
   };
-  
-  Array.from(document.querySelectorAll('.donate-widget__sum-picker')).forEach(function(elem) {
+
+  sumPickers.forEach((elem) => {
     elem.addEventListener('click', handleSumPickerClick);
   });
-  Array.from(document.querySelectorAll('.donate-widget__paytype-picker')).forEach(function(elem) {
+  paytypePickers.forEach((elem) => {
     elem.addEventListener('click', handlePaytypePickerClick);
   });
 
   document.querySelector('.donate-widget__wrapper').addEventListener('submit', (e) => {
     e.preventDefault();
     pay();
-    e.target.reset();
-
+    setTimeout(() => { 
+      e.target.reset();
+      customFormReset();
+    }, 2000);
   });
 </script>
