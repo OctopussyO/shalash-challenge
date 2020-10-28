@@ -278,6 +278,7 @@
   let monthly = true;
   const sumInputElement = document.querySelector('.donate-widget__sum-picker.donate-widget__input');
   const emailInputElement = document.querySelector('.donate-widget__email');
+  const formElement = document.querySelector('.donate-widget__wrapper');
   const sumPickers = Array.from(document.querySelectorAll('.donate-widget__sum-picker'));
   const paytypePickers = Array.from(document.querySelectorAll('.donate-widget__paytype-picker'));
 
@@ -311,6 +312,7 @@
   }
 
   const customFormReset = () => {
+    formElement.reset();
     sumPickers.forEach((elem, i) => {
       if (i === 0) {
         elem.classList.add('donate-widget__sum-picker_active');
@@ -348,15 +350,18 @@
 
     const widget = new cp.CloudPayments();
 
-    widget.charge({ // options
-      publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
-      description: 'Пожертвование в фонд "Шалаш"',
-      amount: amount, //сумма
-      currency: 'RUB', //валюта
-      skin: "mini", //дизайн виджета
-      accountId: email,
-      data: data,  
-    });
+    widget.charge(
+      { // options
+        publicId: 'pk_9518a6238804406edf0f1b39a27d2',  //id из личного кабинета
+        description: 'Пожертвование в фонд "Шалаш"',
+        amount: amount, //сумма
+        currency: 'RUB', //валюта
+        skin: "mini", //дизайн виджета
+        accountId: email,
+        data: data,  
+      },
+      customFormReset,
+    );
   };
 
   sumPickers.forEach((elem) => {
@@ -366,12 +371,8 @@
     elem.addEventListener('click', handlePaytypePickerClick);
   });
 
-  document.querySelector('.donate-widget__wrapper').addEventListener('submit', (e) => {
+  formElement.addEventListener('submit', (e) => {
     e.preventDefault();
     pay();
-    setTimeout(() => { 
-      e.target.reset();
-      customFormReset();
-    }, 2000);
   });
 </script>
