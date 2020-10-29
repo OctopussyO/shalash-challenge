@@ -303,12 +303,12 @@
     this.classList.add('donate-widget__paytype-picker_active');
 
     if ( this.classList.contains('periodical') ) {
-    monthly = true;
-    emailInputElement.required = true;
-  } else {
-    monthly = false;
-    emailInputElement.required = false;
-  }
+      monthly = true;
+      emailInputElement.required = true;
+    } else {
+      monthly = false;
+      emailInputElement.required = false;
+    }
   }
 
   const customFormReset = () => {
@@ -332,6 +332,7 @@
     });
 
     monthly = true;
+    emailInputElement.required = true;
   }
 
   const pay = function () {
